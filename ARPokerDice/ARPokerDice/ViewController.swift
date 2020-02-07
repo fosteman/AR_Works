@@ -234,6 +234,16 @@ class ViewController: UIViewController {
     }
   }
   
+    func updateDiceNodes() {
+        for node in sceneView.scene.rootNode.childNodes {
+            if node.name == "dice" {
+                if node.presentation.position.y < -2 {
+                    node.removeFromParentNode()
+                    diceCount += 1
+                }
+            }
+        }
+    }
     
   
 }
@@ -247,6 +257,7 @@ extension ViewController : ARSCNViewDelegate {
     DispatchQueue.main.async {
       self.updateStatus()
       self.updateFocusNode()
+        self.updateDiceNodes()
     }
   }
   
@@ -337,7 +348,7 @@ extension ViewController : ARSCNViewDelegate {
     guard let anchor = anchor as? ARPlaneAnchor else {return}
     
     DispatchQueue.main.async {
-      self.removePlaneNode(node)
+      self.removePlaneNode(node: node)
     }
   }
 }
