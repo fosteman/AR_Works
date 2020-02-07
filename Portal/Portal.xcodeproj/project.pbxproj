@@ -16,6 +16,7 @@
 		93C2FC361F925494003C03F5 /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2FC351F925494003C03F5 /* SCNVector3Extension.swift */; };
 		93C2FC651F94273E003C03F5 /* FloatingPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2FC641F94273E003C03F5 /* FloatingPointExtension.swift */; };
 		93C2FC691F942E23003C03F5 /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C2FC681F942E23003C03F5 /* Assets.scnassets */; };
+		B86EE7F823EDEF2400DC72AE /* SCNNodeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7F723EDEF2400DC72AE /* SCNNodeHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		93C2FC351F925494003C03F5 /* SCNVector3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
 		93C2FC641F94273E003C03F5 /* FloatingPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointExtension.swift; sourceTree = "<group>"; };
 		93C2FC681F942E23003C03F5 /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
+		B86EE7F623EDEE5C00DC72AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B86EE7F723EDEF2400DC72AE /* SCNNodeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNNodeHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +52,7 @@
 				93C2FC351F925494003C03F5 /* SCNVector3Extension.swift */,
 				93C2FC641F94273E003C03F5 /* FloatingPointExtension.swift */,
 				93935D621FD4C6ED0040A6A8 /* RWLabel.swift */,
+				B86EE7F723EDEF2400DC72AE /* SCNNodeHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -82,6 +86,7 @@
 				93C2FC2C1F91690C003C03F5 /* LaunchScreen.storyboard */,
 				93C2FC2F1F91690C003C03F5 /* Info.plist */,
 				93C2FC681F942E23003C03F5 /* Assets.scnassets */,
+				B86EE7F623EDEE5C00DC72AE /* README.md */,
 			);
 			path = Portal;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			files = (
 				93C2FC261F91690C003C03F5 /* PortalViewController.swift in Sources */,
 				93C2FC361F925494003C03F5 /* SCNVector3Extension.swift in Sources */,
+				B86EE7F823EDEF2400DC72AE /* SCNNodeHelpers.swift in Sources */,
 				93C2FC651F94273E003C03F5 /* FloatingPointExtension.swift in Sources */,
 				93C2FC241F91690C003C03F5 /* AppDelegate.swift in Sources */,
 				93935D631FD4C6ED0040A6A8 /* RWLabel.swift in Sources */,
