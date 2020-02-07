@@ -187,7 +187,8 @@ class ViewController: UIViewController {
   
   func createPlaneNode(_ anchor: ARPlaneAnchor, color: UIColor) -> SCNNode {
     let planeGeometry = SCNPlane(
-    width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
+    width: CGFloat(anchor.extent.x),
+    height: CGFloat(anchor.extent.z))
     
     let planeMaterial = SCNMaterial()
     planeMaterial.diffuse.contents = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8470588235)
@@ -197,6 +198,7 @@ class ViewController: UIViewController {
     
     planeNode.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
     planeNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0) // pitch horizontally
+    planeNode.physicsBody = createPlanePhysics(planeGeometry) //attach physics body
     
     return planeNode
     
@@ -206,6 +208,8 @@ class ViewController: UIViewController {
     planeGeometry.width = CGFloat(planeAnchor.extent.x)
     planeGeometry.height = CGFloat(planeAnchor.extent.z)
     node.position = SCNVector3Make(planeAnchor.center.x, 0, planeAnchor.center.z)
+    node.physicsBody = nil
+    node.physicsBody = createPlanePhysics(planeGeometry)
   }
   
   func updateFocusNode() {
@@ -245,6 +249,13 @@ class ViewController: UIViewController {
         }
     }
     
+    func createPlanePhysics(_ geometry: SCNGeometry) -> SCNPhysicsBody {
+        let physicsBody = SCNPhysicsBody(type: .kinematic, //similar to static, but can be moved around
+                                         shape: SCNPhysicsShape(geometry: geometry, options: nil)) //shape automatically provides object geometry
+        physicsBody.restitution = 0.5
+        physicsBody.friction = 0.5
+        return physicsBody
+    }
   
 }
 
