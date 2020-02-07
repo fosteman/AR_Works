@@ -13,6 +13,7 @@
 		B86EE7D423ED946B00DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D223ED946B00DC72AE /* Main.storyboard */; };
 		B86EE7D623ED946C00DC72AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D523ED946C00DC72AE /* Assets.xcassets */; };
 		B86EE7D923ED946C00DC72AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D723ED946C00DC72AE /* LaunchScreen.storyboard */; };
+		B86EE7EA23EDD88B00DC72AE /* PokerDice.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B86EE7D523ED946C00DC72AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B86EE7D823ED946C00DC72AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86EE7DA23ED946C00DC72AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = PokerDice.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		B86EE7CB23ED946B00DC72AE /* ARPokerDice */ = {
 			isa = PBXGroup;
 			children = (
+				B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */,
 				B86EE7CC23ED946B00DC72AE /* AppDelegate.swift */,
 				B86EE7CE23ED946B00DC72AE /* art.scnassets */,
 				B86EE7D023ED946B00DC72AE /* ViewController.swift */,
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EE7CF23ED946B00DC72AE /* art.scnassets in Resources */,
+				B86EE7EA23EDD88B00DC72AE /* PokerDice.scnassets in Resources */,
 				B86EE7D923ED946C00DC72AE /* LaunchScreen.storyboard in Resources */,
 				B86EE7D623ED946C00DC72AE /* Assets.xcassets in Resources */,
 				B86EE7D423ED946B00DC72AE /* Main.storyboard in Resources */,
