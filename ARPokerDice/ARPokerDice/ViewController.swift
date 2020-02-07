@@ -108,9 +108,11 @@ class ViewController: UIViewController {
   func initScene() {
     let scene = SCNScene()
     scene.isPaused = false
+    scene.physicsWorld.speed = 1 / 60.0 // physics simulation update
     sceneView.scene = scene
     //scene.lightingEnvironment.contents = "PokerDice.scnassets/Textures/Environment_CUBE.jpg"
     //scene.lightingEnvironment.intensity = 2
+    
   }
   
   func initARSession() {
@@ -226,10 +228,13 @@ class ViewController: UIViewController {
     }
   }
   
-  func removePlaneNode(_ node: SCNNode) {
-    node.removeFromParentNode()
+  func removePlaneNode(node: SCNNode) {
+    for childNode in node.childNodes {
+      childNode.removeFromParentNode()
+    }
   }
   
+    
   
 }
 
