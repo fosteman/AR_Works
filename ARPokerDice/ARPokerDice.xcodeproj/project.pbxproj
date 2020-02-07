@@ -10,10 +10,14 @@
 		B86EE7CD23ED946B00DC72AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7CC23ED946B00DC72AE /* AppDelegate.swift */; };
 		B86EE7CF23ED946B00DC72AE /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7CE23ED946B00DC72AE /* art.scnassets */; };
 		B86EE7D123ED946B00DC72AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7D023ED946B00DC72AE /* ViewController.swift */; };
-		B86EE7D423ED946B00DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D223ED946B00DC72AE /* Main.storyboard */; };
 		B86EE7D623ED946C00DC72AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D523ED946C00DC72AE /* Assets.xcassets */; };
 		B86EE7D923ED946C00DC72AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7D723ED946C00DC72AE /* LaunchScreen.storyboard */; };
 		B86EE7EA23EDD88B00DC72AE /* PokerDice.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */; };
+		B86EE7EC23EDE3A700DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7EB23EDE3A700DC72AE /* Main.storyboard */; };
+		B86EE7F223EDE41000DC72AE /* GameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7EE23EDE41000DC72AE /* GameUtils.swift */; };
+		B86EE7F323EDE41000DC72AE /* SCNVector3+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7EF23EDE41000DC72AE /* SCNVector3+Extension.swift */; };
+		B86EE7F423EDE41000DC72AE /* Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7F023EDE41000DC72AE /* Generics.swift */; };
+		B86EE7F523EDE41000DC72AE /* Random+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7F123EDE41000DC72AE /* Random+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +25,15 @@
 		B86EE7CC23ED946B00DC72AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86EE7CE23ED946B00DC72AE /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		B86EE7D023ED946B00DC72AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B86EE7D323ED946B00DC72AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B86EE7D523ED946C00DC72AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B86EE7D823ED946C00DC72AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B86EE7DA23ED946C00DC72AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = PokerDice.scnassets; sourceTree = "<group>"; };
+		B86EE7EB23EDE3A700DC72AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B86EE7EE23EDE41000DC72AE /* GameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUtils.swift; sourceTree = "<group>"; };
+		B86EE7EF23EDE41000DC72AE /* SCNVector3+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extension.swift"; sourceTree = "<group>"; };
+		B86EE7F023EDE41000DC72AE /* Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generics.swift; sourceTree = "<group>"; };
+		B86EE7F123EDE41000DC72AE /* Random+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Random+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,29 @@
 		B86EE7CB23ED946B00DC72AE /* ARPokerDice */ = {
 			isa = PBXGroup;
 			children = (
+				B86EE7ED23EDE41000DC72AE /* GameUtils */,
 				B86EE7E923EDD88B00DC72AE /* PokerDice.scnassets */,
 				B86EE7CC23ED946B00DC72AE /* AppDelegate.swift */,
 				B86EE7CE23ED946B00DC72AE /* art.scnassets */,
 				B86EE7D023ED946B00DC72AE /* ViewController.swift */,
-				B86EE7D223ED946B00DC72AE /* Main.storyboard */,
+				B86EE7EB23EDE3A700DC72AE /* Main.storyboard */,
 				B86EE7D523ED946C00DC72AE /* Assets.xcassets */,
 				B86EE7D723ED946C00DC72AE /* LaunchScreen.storyboard */,
 				B86EE7DA23ED946C00DC72AE /* Info.plist */,
 			);
 			path = ARPokerDice;
+			sourceTree = "<group>";
+		};
+		B86EE7ED23EDE41000DC72AE /* GameUtils */ = {
+			isa = PBXGroup;
+			children = (
+				B86EE7EE23EDE41000DC72AE /* GameUtils.swift */,
+				B86EE7EF23EDE41000DC72AE /* SCNVector3+Extension.swift */,
+				B86EE7F023EDE41000DC72AE /* Generics.swift */,
+				B86EE7F123EDE41000DC72AE /* Random+Extension.swift */,
+			);
+			name = GameUtils;
+			path = "../../../../../Downloads/ARKit_by_Tutorials_v3.0.0/06-adding-physics/final/ARPokerDice/GameUtils";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +152,8 @@
 				B86EE7CF23ED946B00DC72AE /* art.scnassets in Resources */,
 				B86EE7EA23EDD88B00DC72AE /* PokerDice.scnassets in Resources */,
 				B86EE7D923ED946C00DC72AE /* LaunchScreen.storyboard in Resources */,
+				B86EE7EC23EDE3A700DC72AE /* Main.storyboard in Resources */,
 				B86EE7D623ED946C00DC72AE /* Assets.xcassets in Resources */,
-				B86EE7D423ED946B00DC72AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,21 +165,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EE7D123ED946B00DC72AE /* ViewController.swift in Sources */,
+				B86EE7F223EDE41000DC72AE /* GameUtils.swift in Sources */,
+				B86EE7F423EDE41000DC72AE /* Generics.swift in Sources */,
 				B86EE7CD23ED946B00DC72AE /* AppDelegate.swift in Sources */,
+				B86EE7F523EDE41000DC72AE /* Random+Extension.swift in Sources */,
+				B86EE7F323EDE41000DC72AE /* SCNVector3+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B86EE7D223ED946B00DC72AE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B86EE7D323ED946B00DC72AE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B86EE7D723ED946C00DC72AE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
