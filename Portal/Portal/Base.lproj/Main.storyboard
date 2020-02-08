@@ -38,10 +38,20 @@
                                 <color key="textColor" red="0.82745098039999998" green="0.2156862745" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53U-JD-HRa" userLabel="Crosshair">
+                                <rect key="frame" x="182.5" y="328.5" width="10" height="10"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="fLe-jV-Seo"/>
+                                    <constraint firstAttribute="height" constant="10" id="xqs-WO-deo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="53U-JD-HRa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1qW-kr-2P8"/>
                             <constraint firstItem="qfc-IZ-0Kp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Og-8R-yeS"/>
+                            <constraint firstItem="53U-JD-HRa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9u5-Ba-721"/>
                             <constraint firstItem="Nli-Iz-uAM" firstAttribute="leading" secondItem="phc-ZZ-K4Q" secondAttribute="leading" id="Q4l-Cq-Zyh"/>
                             <constraint firstItem="phc-ZZ-K4Q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Qa5-UY-yt1"/>
                             <constraint firstItem="phc-ZZ-K4Q" firstAttribute="trailing" secondItem="Nli-Iz-uAM" secondAttribute="trailing" id="bUU-yh-ecU"/>
@@ -55,6 +65,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="crosshair" destination="53U-JD-HRa" id="XTq-7c-lVx"/>
                         <outlet property="messageLabel" destination="phc-ZZ-K4Q" id="s84-Hk-kDN"/>
                         <outlet property="sceneView" destination="qfc-IZ-0Kp" id="yxv-OT-tGe"/>
                         <outlet property="sessionStateLabel" destination="Nli-Iz-uAM" id="85z-D0-5TH"/>

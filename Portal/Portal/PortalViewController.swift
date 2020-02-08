@@ -4,10 +4,13 @@ import ARKit
 class PortalViewController: UIViewController {
 
   @IBOutlet var sceneView: ARSCNView?
-  @IBOutlet weak var messageLabel: UILabel?
+    @IBOutlet weak var crosshair: UIView!
+    @IBOutlet weak var messageLabel: UILabel?
   @IBOutlet weak var sessionStateLabel: UILabel?
   var debugPlanes: [SCNNode] = []
-  
+  var viewCenter: CGPoint {
+    return CGPoint(x: view.bounds.width / 2.0 , y: view.bounds.height / 2.0)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,11 +60,17 @@ class PortalViewController: UIViewController {
     sceneView?.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     #endif
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let hit = sceneView?.hitTest(viewCenter, types: [.existingPlaneUsingExtent]).first {
+      sceneView?.session.add(anchor: ARAnchor(transform: hit.worldTransform)) ///
+    }
+  }
 }
 
 extension PortalViewController: ARSCNViewDelegate {
   
-  /// Is called when ARSession detects new plane, and the ARSCNView automatically adds an ARPlaneAnchor for the plane
+  /// Is called when ARSession detects new plane, and the ARSCNView automatically adds an ARPlaneAnchor for the plane, and when user taps on screen having at least one detected plane rendered
   func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     DispatchQueue.main.async {
       if let planeAnchor = anchor as? ARPlaneAnchor {
@@ -82,6 +91,16 @@ extension PortalViewController: ARSCNViewDelegate {
         updatePlaneNode(node.childNodes[0],
                         center: planeAnchor.center,
                         extent: planeAnchor.extent)
+      }
+    }
+  }
+  func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+    DispatchQueue.main.async {
+      if let _ = self.sceneView?.hitTest(self.viewCenter, types: [.existingPlaneUsingExtent]).first {
+        self.crosshair.backgroundColor = UIColor.green
+        }
+      else {
+        self.crosshair.backgroundColor = UIColor.lightGray
       }
     }
   }
@@ -110,3 +129,4 @@ extension PortalViewController: ARSCNViewDelegate {
     showMessage(error.localizedDescription, label: label, seconds: 3)
   }
 }
+
