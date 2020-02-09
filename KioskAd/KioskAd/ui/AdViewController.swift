@@ -47,8 +47,11 @@ class AdViewController: UIViewController {
                          bottomRight: matrix_float4x4,
                          bottomLeft: matrix_float4x4) {
         let plane = RectangularPlane(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+        //Rotate center counterclockwise
+        let rotation = SCNMatrix4MakeRotation(Float.pi / 2, 0, 0, 1)
+        let rotatedCenter = plane.center * simd_float4x4(rotation)
         //place anchor in the middle of the rectangle-orientation
-        let anchor = ARAnchor(transform: plane.center)
+        let anchor = ARAnchor(transform: rotatedCenter)
         
         billboard = BillboardContainer(billboardAnchor: anchor, plane: plane)
         
@@ -76,14 +79,16 @@ class AdViewController: UIViewController {
         }
     }
     
-    func setBillboardImage(_ image: UIImage) {
+    func setBillboardImages(_ images: [UIImage]) {
         let material = SCNMaterial()
         material.isDoubleSided = true
         
         DispatchQueue.main.async {
-            //UIView can be assigned a material
-            material.diffuse.contents = UIImageView(image: image)
-            // ccmaterial.diffuse.contentsTransform 
+            let billboardViewController = BillboardViewController(nibName: "BillboardViewController", bundle: nil)
+            billboardViewController.images = images
+            //assign the view that the controller manages
+            material.diffuse.contents = billboardViewController.view
+            self.billboard?.viewController = billboardViewController
             self.billboard?.billboardNode?.geometry?.materials = [material]
         }
         
@@ -95,14 +100,18 @@ extension AdViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard let billboard = billboard else {return nil}
         var node: SCNNode? = nil
+        DispatchQueue.main.sync {
         switch anchor {
             case billboard.billboardAnchor:
             node = addBillboardNode()
             default:
             break
         }
-        let image = UIImage(named: "logo_1")!
-        setBillboardImage(image)
+            }
+        let images = ["logo_1", "logo_2", "logo_3", "logo_4"].compactMap { img in
+            UIImage(named: img)
+        }
+        setBillboardImages(images)
         
         return node
     }
