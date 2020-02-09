@@ -126,6 +126,15 @@ extension AdViewController {
                        coordinates[3])
                     
                     self.createBillboard(topLeft: coordinates[0],topRight: coordinates[1],bottomRight: coordinates[2],bottomLeft: coordinates[3])
+                    #if DEBUG
+                    // Display placemarks
+                    for c in coordinates {
+                        let mark = SCNBox(width: 0.01, height: 0.01, length: 0.001, chamferRadius: 0)
+                        let node = SCNNode(geometry: mark)
+                        node.transform = SCNMatrix4(c)
+                        self.sceneView.scene.rootNode.addChildNode(node)
+                    }
+                    #endif
                 }
             }
             //Execute the Vision request

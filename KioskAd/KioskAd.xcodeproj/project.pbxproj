@@ -65,7 +65,7 @@
 			children = (
 				B86EE82423F080CC00DC72AE /* ui */,
 				B86EE81F23F07EE700DC72AE /* data */,
-				B86EE81E23F07ED700DC72AE /* app */,
+				B86EE81E23F07ED700DC72AE /* App */,
 				B86EE80B23F07BC000DC72AE /* art.scnassets */,
 				B86EE81223F07BC300DC72AE /* Assets.xcassets */,
 				B86EE81723F07BC300DC72AE /* Info.plist */,
@@ -74,12 +74,12 @@
 			path = KioskAd;
 			sourceTree = "<group>";
 		};
-		B86EE81E23F07ED700DC72AE /* app */ = {
+		B86EE81E23F07ED700DC72AE /* App */ = {
 			isa = PBXGroup;
 			children = (
 				B86EE80923F07BC000DC72AE /* AppDelegate.swift */,
 			);
-			path = app;
+			path = App;
 			sourceTree = "<group>";
 		};
 		B86EE81F23F07EE700DC72AE /* data */ = {
