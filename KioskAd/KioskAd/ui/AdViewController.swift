@@ -75,6 +75,19 @@ class AdViewController: UIViewController {
             billboard = nil
         }
     }
+    
+    func setBillboardImage(_ image: UIImage) {
+        let material = SCNMaterial()
+        material.isDoubleSided = true
+        
+        DispatchQueue.main.async {
+            //UIView can be assigned a material
+            material.diffuse.contents = UIImageView(image: image)
+            // ccmaterial.diffuse.contentsTransform 
+            self.billboard?.billboardNode?.geometry?.materials = [material]
+        }
+        
+    }
 }
 
 // MARK: - ARSCNViewDelegate
@@ -88,6 +101,8 @@ extension AdViewController: ARSCNViewDelegate {
             default:
             break
         }
+        let image = UIImage(named: "logo_1")!
+        setBillboardImage(image)
         
         return node
     }
