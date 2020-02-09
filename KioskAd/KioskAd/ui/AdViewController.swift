@@ -58,6 +58,18 @@ class AdViewController: UIViewController {
         print("Billboard Created")
     }
     
+    func addBillboardNode() -> SCNNode? {
+        guard let billboard = billboard else {return nil}
+        
+        let rect = SCNPlane(width: billboard.plane.width, height: billboard.plane.height)
+        let node = SCNNode(geometry: rect)
+        ///Node rotation
+        //node.eulerAngles = SCNVector3(
+        self.billboard?.billboardNode = node
+        
+        return node
+    }
+    
     func removeBillboard() {
         if let anchor = billboard?.billboardAnchor {
             sceneView.session.remove(anchor: anchor)
@@ -69,6 +81,18 @@ class AdViewController: UIViewController {
 
 // MARK: - ARSCNViewDelegate
 extension AdViewController: ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard let billboard = billboard else {return nil}
+        var node: SCNNode? = nil
+        switch anchor {
+            case billboard.billboardAnchor:
+            node = addBillboardNode()
+            default:
+            break
+        }
+        
+        return node
+    }
 }
 
 extension AdViewController: ARSessionDelegate {
@@ -121,9 +145,6 @@ extension AdViewController {
                 DispatchQueue.main.async {
                     ///Cleanup the screen in case billboard was previously rendered
                     self.removeBillboard()
-                    /// Destruct the array onto vectors
-                    let (topLeft, topRight, bottomRight, bottomLeft) = (coordinates[0], coordinates[1], coordinates[2],
-                       coordinates[3])
                     
                     self.createBillboard(topLeft: coordinates[0],topRight: coordinates[1],bottomRight: coordinates[2],bottomLeft: coordinates[3])
                     #if DEBUG
@@ -146,7 +167,4 @@ extension AdViewController {
         }
     }
   }
-}
-
-private extension AdViewController {
 }
