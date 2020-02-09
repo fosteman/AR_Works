@@ -92,6 +92,12 @@ class PortalViewController: UIViewController {
     
     portal.addChildNode(ceilingNode)
     
+    let farWallNode = makeWallNode()
+    farWallNode.eulerAngles = SCNVector3(0, 90.0.degreesToRadians, 0) //facing camera
+    farWallNode.position = SCNVector3(0, POSITION_Y + WALL_HEIGHT * 0.5, POSITION_Z - SURFACE_LENGTH * 0.5)
+    
+    portal.addChildNode(farWallNode)
+    
     return portal
   }
   
