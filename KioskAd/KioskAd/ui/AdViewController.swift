@@ -113,16 +113,16 @@ extension AdViewController {
     DispatchQueue.global(qos: .background).async {
         do {
             ///Create rectangle detection request with a callback
-            let req = VNDetectRectanglesRequest {(request, error) in
+            let req = VNDetectBarcodesRequest {(request, error) in
                 ///Access the first positive rectangle observation result
                 guard
                     let results = request.results?.compactMap({
                     res in
-                    return res as? VNRectangleObservation
+                    return res as? VNBarcodeObservation
                 }),
                 let r = results.first
                 else {
-                    print("Vision does not observe rectangle")
+                    print("Vision does not observe barcode in its view")
                     return
                 }
                 ///Use the four verticles of observation of detected rectangle
