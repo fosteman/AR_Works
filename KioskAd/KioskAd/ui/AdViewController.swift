@@ -78,6 +78,15 @@ class AdViewController: UIViewController {
             billboard = nil
         }
     }
+    func removeVideo() {
+    if let videoAnchor = billboard?.videoAnchor {
+        sceneView.session.remove(anchor: videoAnchor)
+    
+        billboard?.videoNode?.removeFromParentNode()
+        billboard?.videoAnchor = nil
+        billboard?.videoNode = nil
+        }
+    }
     
     func setBillboardImages(_ images: [UIImage]) {
         let material = SCNMaterial()
@@ -173,6 +182,13 @@ extension AdViewController: ARSessionDelegate {
 
 extension AdViewController {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //Remove video node
+    if billboard?.hasVideoNode == true {
+        billboard?.billboardNode?.isHidden = false
+        removeVideo()
+    return
+    }
+    
     ///Ar Session carries an `ARFrame`
     guard let currentFrame = sceneView.session.currentFrame else { return}
     
