@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8029A9623F0B5F700D7AF74 /* BillboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8029A9523F0B5F700D7AF74 /* BillboardData.swift */; };
 		B86EE80A23F07BC000DC72AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE80923F07BC000DC72AE /* AppDelegate.swift */; };
 		B86EE81123F07BC000DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE80F23F07BC000DC72AE /* Main.storyboard */; };
 		B86EE81323F07BC300DC72AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE81223F07BC300DC72AE /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		B8029A8D23F0B37D00D7AF74 /* How to Visualize and Manifest Bigger Goals.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How to Visualize and Manifest Bigger Goals.mp4"; sourceTree = "<group>"; };
+		B8029A9523F0B5F700D7AF74 /* BillboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillboardData.swift; sourceTree = "<group>"; };
 		B86EE80623F07BC000DC72AE /* KioskAd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KioskAd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EE80923F07BC000DC72AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86EE81023F07BC000DC72AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				B8029A8D23F0B37D00D7AF74 /* How to Visualize and Manifest Bigger Goals.mp4 */,
 				B86EE82023F07F1100DC72AE /* BillboardContainer.swift */,
 				B86EE82123F07F1100DC72AE /* RectangularPlane.swift */,
+				B8029A9523F0B5F700D7AF74 /* BillboardData.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				B86EE82723F080E100DC72AE /* AdViewController.swift in Sources */,
 				B86EE82323F07F1100DC72AE /* RectangularPlane.swift in Sources */,
 				B86EE82C23F0A58E00DC72AE /* BillboardView.swift in Sources */,
+				B8029A9623F0B5F700D7AF74 /* BillboardData.swift in Sources */,
 				B86EE80A23F07BC000DC72AE /* AppDelegate.swift in Sources */,
 				B86EE82223F07F1100DC72AE /* BillboardContainer.swift in Sources */,
 				B86EE82E23F0A58E00DC72AE /* BillboardViewController.swift in Sources */,

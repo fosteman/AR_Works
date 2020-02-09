@@ -42,10 +42,13 @@ class AdViewController: UIViewController {
     
     
     //MARK: - Creating Nodes
-    func createBillboard(topLeft: matrix_float4x4,
-                         topRight: matrix_float4x4,
-                         bottomRight: matrix_float4x4,
-                         bottomLeft: matrix_float4x4) {
+    func createBillboard(
+        with billboardData: BillboardData,
+        topLeft: matrix_float4x4,
+        topRight: matrix_float4x4,
+        bottomRight: matrix_float4x4,
+        bottomLeft: matrix_float4x4) {
+        
         let plane = RectangularPlane(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
         //Rotate center counterclockwise
         let rotation = SCNMatrix4MakeRotation(Float.pi / 2, 0, 0, 1)
@@ -53,7 +56,9 @@ class AdViewController: UIViewController {
         //place anchor in the middle of the rectangle-orientation
         let anchor = ARAnchor(transform: rotatedCenter)
         
-        billboard = BillboardContainer(billboardAnchor: anchor, plane: plane)
+        billboard = BillboardContainer(billboardData: billboardData,
+                                       billboardAnchor: anchor,
+                                       plane: plane)
         
         sceneView.session.add(anchor: anchor)
         print("Billboard Created")
@@ -118,10 +123,9 @@ class AdViewController: UIViewController {
         
         let billboardSize = CGSize(width: billboard.plane.width, height: billboard.plane.height)
         let frameSize = CGSize(width: 1024, height: 512)
-        let videoUrl = URL(fileURLWithPath: "data/How to Visualize and Manifest Bigger Goals.mp4")
+        let videoUrl = URL(string: billboard.billboardData.videoUrl)!
         
         let player = AVPlayer(url: videoUrl)
-        print(player.error)
         let videoPlayerNode = SKVideoNode(avPlayer: player)
         videoPlayerNode.size = frameSize
         videoPlayerNode.position = CGPoint(x: frameSize.width / 2, y: frameSize.height / 2)
@@ -159,8 +163,8 @@ extension AdViewController: ARSCNViewDelegate {
             break
         }
             }
-        let images = ["logo_1", "logo_2", "logo_3", "logo_4"].compactMap { img in
-            UIImage(named: img)
+        let images = billboard.billboardData.images.map {
+            UIImage(named: $0)!
         }
         setBillboardImages(images)
         
@@ -207,6 +211,10 @@ extension AdViewController {
                     print("Vision does not observe barcode in its view")
                     return
                 }
+                ///Decode the QR
+                guard let json = r.payloadStringValue else {return}
+                guard let billboardData = BillboardData.decode(from: json) else {return}
+                
                 ///Use the four verticles of observation of detected rectangle
                 let coordinates: [matrix_float4x4] = [
                 r.topLeft,
@@ -227,7 +235,11 @@ extension AdViewController {
                     ///Cleanup the screen in case billboard was previously rendered
                     self.removeBillboard()
                     
-                    self.createBillboard(topLeft: coordinates[0],topRight: coordinates[1],bottomRight: coordinates[2],bottomLeft: coordinates[3])
+                    self.createBillboard(with: billboardData,
+                                         topLeft: coordinates[0],
+                                         topRight: coordinates[1],
+                                         bottomRight: coordinates[2],
+                                         bottomLeft: coordinates[3])
                     #if DEBUG
                     // Display placemarks
                     for c in coordinates {
