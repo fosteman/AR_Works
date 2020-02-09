@@ -119,6 +119,7 @@ class PortalViewController: UIViewController {
     portal.addChildNode(leftSideWallNode)
     
     addDoorway(portal)
+    placeLightSource(portal)
     
     return portal
   }
@@ -156,6 +157,18 @@ class PortalViewController: UIViewController {
     DOOR_HEIGHT) * 0.5 + DOOR_HEIGHT, POSITION_Z + SURFACE_LENGTH * 0.5)
     
     node.addChildNode(aboveDoorNode)
+  }
+  
+  func placeLightSource(_ rootNode: SCNNode) {
+    let light = SCNLight()
+    light.intensity = 10
+    light.type = .omni
+    let lightNode = SCNNode()
+    lightNode.light = light
+    lightNode.position = SCNVector3(0,
+    POSITION_Y + WALL_HEIGHT,
+    POSITION_Z)
+    rootNode.addChildNode(lightNode)
   }
   
 }
