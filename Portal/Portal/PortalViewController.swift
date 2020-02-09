@@ -86,6 +86,12 @@ class PortalViewController: UIViewController {
     floorNode.position = SCNVector3(0, POSITION_Y, POSITION_Z)
     
     portal.addChildNode(floorNode)
+    
+    let ceilingNode = makeCeilingNode()
+    ceilingNode.position = SCNVector3(0, POSITION_Y + WALL_HEIGHT, POSITION_Z)
+    
+    portal.addChildNode(ceilingNode)
+    
     return portal
   }
   

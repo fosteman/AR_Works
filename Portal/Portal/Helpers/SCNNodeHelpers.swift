@@ -111,3 +111,37 @@ func makeFloorNode() -> SCNNode {
   
   return floorNode
 }
+
+func makeCeilingNode() -> SCNNode {
+  let outerCeilingNode = makeOuterSurfaceNode(width: SURFACE_WIDTH, height: SURFACE_HEIGHT, length: SURFACE_LENGTH)
+  outerCeilingNode.position = SCNVector3(SURFACE_HEIGHT * 0.5, SURFACE_HEIGHT, 0) // goes on top
+  
+  let ceilingNode = SCNNode()
+  ceilingNode.addChildNode(outerCeilingNode)
+  
+  let innerCeiling = SCNBox(width: SURFACE_WIDTH, height: SURFACE_HEIGHT, length: SURFACE_LENGTH, chamferRadius: 0)
+  innerCeiling.firstMaterial?.lightingModel = .physicallyBased
+  innerCeiling.firstMaterial?.diffuse.contents =
+      UIImage(named:
+  "Assets.scnassets/ceiling/textures/Ceiling_Diffuse.png")
+  innerCeiling.firstMaterial?.emission.contents =
+      UIImage(named:
+  "Assets.scnassets/ceiling/textures/Ceiling_Emis.png")
+  innerCeiling.firstMaterial?.normal.contents =
+      UIImage(named:
+  "Assets.scnassets/ceiling/textures/Ceiling_Normal.png")
+  innerCeiling.firstMaterial?.specular.contents =
+      UIImage(named:
+  "Assets.scnassets/ceiling/textures/Ceiling_Specular.png")
+  innerCeiling.firstMaterial?.selfIllumination.contents =
+  UIImage(named: "Assets.scnassets/ceiling/textures/Ceiling_Gloss.png")
+
+  repeatTextures(geometry: innerCeiling, scaleX: SCALEX, scaleY: SCALEY)
+  
+  let innerCeilingNode = SCNNode(geometry: innerCeiling)
+  innerCeilingNode.renderingOrder = 100
+  innerCeilingNode.position = SCNVector3(SURFACE_HEIGHT * 0.5, 0, 0)
+  
+  ceilingNode.addChildNode(innerCeilingNode)
+  return ceilingNode
+}
