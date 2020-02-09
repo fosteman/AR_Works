@@ -98,6 +98,22 @@ class PortalViewController: UIViewController {
     
     portal.addChildNode(farWallNode)
     
+    let rightSideWallNode = makeWallNode(maskLowerSide: true)
+    
+    rightSideWallNode.eulerAngles = SCNVector3(0, 180.0.degreesToRadians, 0)
+    
+    rightSideWallNode.position = SCNVector3(WALL_LENGTH * 0.5, POSITION_Y + WALL_HEIGHT * 0.5,
+    POSITION_Z)
+    
+    portal.addChildNode(rightSideWallNode)
+    
+    let leftSideWallNode = makeWallNode(maskLowerSide: true)
+    
+    leftSideWallNode.position = SCNVector3(-WALL_LENGTH * 0.5, POSITION_Y + WALL_HEIGHT * 0.5,
+    POSITION_Z)
+    
+    portal.addChildNode(leftSideWallNode)
+    
     return portal
   }
   
