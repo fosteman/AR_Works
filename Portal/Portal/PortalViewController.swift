@@ -140,8 +140,7 @@ extension PortalViewController: ARSCNViewDelegate {
   func renderer(_ renderer: SCNSceneRenderer,
                 updateAtTime time: TimeInterval) {
     DispatchQueue.main.async {
-      if let _ = self.sceneView?.hitTest(self.viewCenter,
-                                         types: [.existingPlaneUsingExtent]).first {
+      if let _ = self.sceneView?.hitTest(self.viewCenter, types: [.existingPlaneUsingExtent]).first {
         self.crosshair.backgroundColor = UIColor.green
       } else {
         self.crosshair.backgroundColor = UIColor.lightGray

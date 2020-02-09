@@ -72,3 +72,44 @@ geometry.firstMaterial?.specular.contentsTransform = SCNMatrix4MakeScale(scaleX,
 geometry.firstMaterial?.emission.contentsTransform = SCNMatrix4MakeScale(scaleX, scaleY, 0)
 geometry.firstMaterial?.roughness.contentsTransform = SCNMatrix4MakeScale(scaleX, scaleY, 0)
 }
+
+// show the floor and ceiling nodes inside portal
+func makeOuterSurfaceNode(width: CGFloat,
+                          height: CGFloat,
+                          length: CGFloat) -> SCNNode {
+  let outerSurface = SCNBox(width: SURFACE_WIDTH, height: SURFACE_HEIGHT, length: SURFACE_LENGTH, chamferRadius: 0)
+  
+  outerSurface.firstMaterial?.diffuse.contents = UIColor.white //render the object
+  outerSurface.firstMaterial?.transparency = 0.1 // hide from view
+  let outerSurfaceNode = SCNNode(geometry: outerSurface)
+  outerSurfaceNode.renderingOrder = 10 // rendered last
+  ///In order to hide the floor and ceiling outside the portal, they'll have greater `renderingOrder`
+  return outerSurfaceNode
+}
+
+func makeFloorNode() -> SCNNode {
+  let outerFloorNode = makeOuterSurfaceNode(width: SURFACE_WIDTH, height: SURFACE_HEIGHT, length: SURFACE_LENGTH)
+  
+  outerFloorNode.position = SCNVector3(SURFACE_HEIGHT * 0.5, -SURFACE_HEIGHT, 0) //lay out on the bottom side
+  
+  let floorNode = SCNNode() // to hold inner and outer
+  floorNode.addChildNode(outerFloorNode)
+  
+  let innerFloor = SCNBox(width: SURFACE_WIDTH, height: SURFACE_HEIGHT, length: SURFACE_LENGTH, chamferRadius: 0)
+  //set visual properties for the material
+  innerFloor.firstMaterial?.lightingModel = .physicallyBased
+  innerFloor.firstMaterial?.diffuse.contents = UIImage(named: "Assets.scnassets/floor/textures/Floor_Diffuse.png")
+  innerFloor.firstMaterial?.normal.contents = UIImage(named: "Assets.scnassets/floor/textures/Floor_Normal.png")
+  innerFloor.firstMaterial?.roughness.contents = UIImage(named: "Assets.scnassets/floor/textures/Floor_Roughness.png")
+  innerFloor.firstMaterial?.specular.contents = UIImage(named: "Assets.scnassets/floor/textures/Floor_Specular.png")
+  innerFloor.firstMaterial?.selfIllumination.contents = UIImage(named: "Assets.scnassets/floor/textures/Floor_Gloss.png")
+  
+  repeatTextures(geometry: innerFloor, scaleX: SCALEX, scaleY: SCALEY)
+  
+  let innerFloorNode = SCNNode(geometry: innerFloor)
+  innerFloorNode.renderingOrder = 100 // ensure floor is invisible while outside of portal
+  innerFloorNode.position = SCNVector3(SURFACE_HEIGHT * 0.5, 0, 0) // position to sit above the outerFloorNode
+  floorNode.addChildNode(innerFloorNode)
+  
+  return floorNode
+}
