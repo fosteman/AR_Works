@@ -27,10 +27,8 @@ class AdViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
-    // Create a session configuration
     let configuration = ARWorldTrackingConfiguration()
-
+    configuration.worldAlignment = .camera
     // Run the view's session
     sceneView.session.run(configuration)
   }
@@ -100,6 +98,7 @@ extension AdViewController: ARSessionDelegate {
   }
 
   func sessionWasInterrupted(_ session: ARSession) {
+    removeBillboard()
   }
 
   func sessionInterruptionEnded(_ session: ARSession) {
