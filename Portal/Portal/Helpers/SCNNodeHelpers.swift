@@ -3,8 +3,6 @@
 //  Portal
 //
 //  Created by Tim Fosteman on 2020-02-07.
-//  Copyright © 2020 Namrata Bandekar. All rights reserved.
-//
 
 import SceneKit
 

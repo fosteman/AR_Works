@@ -1,6 +1,10 @@
 import UIKit
 import ARKit
 
+//Position offset
+let POSITION_Y: CGFloat = -WALL_HEIGHT * 0.5
+let POSITION_Z: CGFloat = -SURFACE_LENGTH * 0.5
+
 class PortalViewController: UIViewController {
 
   @IBOutlet weak var crosshair: UIView!
@@ -77,12 +81,11 @@ class PortalViewController: UIViewController {
   
   func makePortal() -> SCNNode {
     let portal = SCNNode()
-    let box = SCNBox(width: 1.0,
-                     height: 1.0,
-                     length: 1.0,
-                     chamferRadius: 0)
-    let boxNode = SCNNode(geometry: box)
-    portal.addChildNode(boxNode)
+    
+    let floorNode = makeFloorNode()
+    floorNode.position = SCNVector3(0, POSITION_Y, POSITION_Z)
+    
+    portal.addChildNode(floorNode)
     return portal
   }
   
