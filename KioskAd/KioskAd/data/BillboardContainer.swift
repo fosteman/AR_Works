@@ -8,13 +8,18 @@ struct BillboardContainer {
   var billboardNode: SCNNode?
   var plane: RectangularPlane
     var viewController: BillboardViewController?
+    var videoAnchor: ARAnchor?
+    var videoNode: SCNNode?
 
   var hasBillboardNode: Bool { return billboardNode != nil }
+    var hasVideoNode: Bool {return videoNode != nil}
 
   init(billboardAnchor: ARAnchor, plane: RectangularPlane) {
     self.billboardAnchor = billboardAnchor
     self.plane = plane
     self.billboardNode = nil
+    self.videoNode = nil
+    self.videoAnchor = nil
   }
 }
 

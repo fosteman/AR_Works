@@ -85,13 +85,52 @@ class AdViewController: UIViewController {
         
         DispatchQueue.main.async {
             let billboardViewController = BillboardViewController(nibName: "BillboardViewController", bundle: nil)
+            billboardViewController.delegate = self
             billboardViewController.images = images
             //assign the view that the controller manages
             material.diffuse.contents = billboardViewController.view
             self.billboard?.viewController = billboardViewController
             self.billboard?.billboardNode?.geometry?.materials = [material]
         }
+    }
+    
+    func createVideo() {
+        guard let billboard = self.billboard else {return}
+        let rotation = SCNMatrix4MakeRotation(Float.pi / 2, 0, 0, 1)
+        let rotatedCenter = matrix_float4x4(rotation) * billboard.plane.center
+        let anchor = ARAnchor(transform: rotatedCenter)
+        sceneView.session.add(anchor: anchor)
+        self.billboard?.videoAnchor = anchor
         
+    }
+    
+    func addVideoPlayerNode() -> SCNNode? {
+        guard let billboard = billboard else {return nil}
+        
+        let billboardSize = CGSize(width: billboard.plane.width, height: billboard.plane.height)
+        let frameSize = CGSize(width: 1024, height: 512)
+        let videoUrl = URL(fileURLWithPath: "data/How to Visualize and Manifest Bigger Goals.mp4")
+        
+        let player = AVPlayer(url: videoUrl)
+        print(player.error)
+        let videoPlayerNode = SKVideoNode(avPlayer: player)
+        videoPlayerNode.size = frameSize
+        videoPlayerNode.position = CGPoint(x: frameSize.width / 2, y: frameSize.height / 2)
+        videoPlayerNode.yScale = -1.0
+        
+        let SKscene = SKScene(size: frameSize)
+        SKscene.addChild(videoPlayerNode)
+        
+        let plane = SCNPlane(width: billboardSize.width, height: billboardSize.height)
+        plane.firstMaterial!.isDoubleSided = true
+        plane.firstMaterial!.diffuse.contents = SKscene
+        let node = SCNNode(geometry: plane)
+        
+        self.billboard?.videoNode = node
+        self.billboard?.billboardNode?.isHidden = true
+        videoPlayerNode.play()
+        
+        return node
     }
 }
 
@@ -104,6 +143,9 @@ extension AdViewController: ARSCNViewDelegate {
         switch anchor {
             case billboard.billboardAnchor:
             node = addBillboardNode()
+        case (let videoAnchor)
+            where videoAnchor == billboard.videoAnchor:
+            node = addVideoPlayerNode()
             default:
             break
         }
@@ -190,4 +232,10 @@ extension AdViewController {
         }
     }
   }
+}
+
+extension AdViewController: BillboardViewDelegate {
+    func billboardViewDidSelectPlayVideo(_ view: BillboardView) {
+        createVideo()
+    }
 }
