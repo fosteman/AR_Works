@@ -145,3 +145,34 @@ func makeCeilingNode() -> SCNNode {
   ceilingNode.addChildNode(innerCeilingNode)
   return ceilingNode
 }
+
+func makeWallNode(length: CGFloat = WALL_LENGTH,
+                  height: CGFloat = WALL_HEIGHT,
+                  maskLowerSide: Bool = false) -> SCNNode {
+  let outerWall = SCNBox(width: WALL_WIDTH, height: height, length: length, chamferRadius: 0)
+  outerWall.firstMaterial?.diffuse.contents = UIColor.white
+  outerWall.firstMaterial?.transparency = 0.1
+  
+  let outerWallNode = SCNNode(geometry: outerWall)
+  let multiplier: CGFloat = maskLowerSide ? -1 : 1 // which side of the wall the outer wall needs to be rendered. IF true the outerwall is placed below the inner wall
+  outerWallNode.position = SCNVector3(WALL_WIDTH * multiplier, 0, 0) // position is offset by the width in X dimension
+  outerWallNode.renderingOrder = 10 //invisible from outside
+  
+  let wallNode = SCNNode()
+  wallNode.addChildNode(outerWallNode)
+  
+  let innerWall = SCNBox(width: WALL_WIDTH, height: height, length: length, chamferRadius: 0 )
+  innerWall.firstMaterial?.lightingModel = .physicallyBased
+  
+  innerWall.firstMaterial?.diffuse.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Diffuse.png")
+  innerWall.firstMaterial?.metalness.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Metalness.png")
+  innerWall.firstMaterial?.roughness.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Roughness.png")
+  innerWall.firstMaterial?.normal.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Normal.png")
+  innerWall.firstMaterial?.specular.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Spec.png")
+  innerWall.firstMaterial?.selfIllumination.contents = UIImage(named: "Assets.scnassets/wall/textures/Walls_Gloss.png")
+  
+  let innerWallNode = SCNNode(geometry: innerWall)
+  wallNode.addChildNode(innerWallNode)
+
+  return wallNode
+}
