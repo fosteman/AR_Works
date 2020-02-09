@@ -4,6 +4,10 @@ import ARKit
 //Position offset
 let POSITION_Y: CGFloat = -WALL_HEIGHT * 0.5
 let POSITION_Z: CGFloat = -SURFACE_LENGTH * 0.5
+//Doorway
+let DOOR_WIDTH: CGFloat = 1.0
+let DOOR_HEIGHT: CGFloat = 2.4
+
 
 class PortalViewController: UIViewController {
 
@@ -114,7 +118,44 @@ class PortalViewController: UIViewController {
     
     portal.addChildNode(leftSideWallNode)
     
+    addDoorway(portal)
+    
     return portal
+  }
+  
+  func addDoorway(_ node: SCNNode) {
+    let halfWallLength: CGFloat = WALL_LENGTH * 0.5
+    let frontHalfWallLength: CGFloat =
+    (WALL_LENGTH - DOOR_WIDTH) * 0.5
+    
+    //represent the wall of the right side of entrance
+    let rightDoorSideNode = makeWallNode(length:
+    frontHalfWallLength)
+    rightDoorSideNode.eulerAngles = SCNVector3(0, 270.0.degreesToRadians, 0)
+    rightDoorSideNode.position = SCNVector3(halfWallLength - 0.5 * DOOR_WIDTH,
+    POSITION_Y + WALL_HEIGHT * 0.5, POSITION_Z + SURFACE_LENGTH * 0.5)
+    
+    node.addChildNode(rightDoorSideNode)
+    
+    // left side of doorway
+    let leftDoorSideNode = makeWallNode(length:
+    frontHalfWallLength)
+    leftDoorSideNode.eulerAngles = SCNVector3(0, 270.0.degreesToRadians, 0)
+    leftDoorSideNode.position = SCNVector3(-halfWallLength + 0.5 * frontHalfWallLength,
+    POSITION_Y + WALL_HEIGHT * 0.5,
+    POSITION_Z + SURFACE_LENGTH * 0.5)
+    
+    node.addChildNode(leftDoorSideNode)
+    
+    let aboveDoorNode = makeWallNode(length: DOOR_WIDTH, height: WALL_HEIGHT - DOOR_HEIGHT)
+      // mask on the outside
+      aboveDoorNode.eulerAngles = SCNVector3(0, 270.0.degreesToRadians, 0)
+      
+      aboveDoorNode.position =
+    SCNVector3(0, POSITION_Y + (WALL_HEIGHT -
+    DOOR_HEIGHT) * 0.5 + DOOR_HEIGHT, POSITION_Z + SURFACE_LENGTH * 0.5)
+    
+    node.addChildNode(aboveDoorNode)
   }
   
 }
