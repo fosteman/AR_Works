@@ -28,3 +28,57 @@ extension BillboardViewController : UICollectionViewDelegateFlowLayout {
     return .zero
   }
 }
+
+//MARK: Data-Source
+extension BillboardViewController {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+        // each type is a separate section
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let currentSection = Section(rawValue: section) else {return 0}
+        
+        switch currentSection {
+        case .images:
+            return billboard?.billboardData.images.count ?? 0
+        case .video:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let currentSection = Section(rawValue: indexPath.section) else {fatalError("Unexpected collection view section")}
+        
+        let cellType: Cell
+        switch currentSection {
+        case .images:
+            cellType = .cellImage
+        case .video:
+            cellType = .cellVideo
+        default:
+            fatalError("wrong type")
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.rawValue, for: indexPath)
+        
+        switch cell {
+        case let imageCell as ImageCell:
+            let image = UIImage(named: billboard!.billboardData.images[indexPath.item])!
+            imageCell.show(image: image)
+        case let videoCell as VideoCell:
+            let videoUrl = billboard!.billboardData.videoUrl
+            if let sceneView = sceneView,
+                let billboard = billboard {
+                videoCell.configure(videoUrl: videoUrl, sceneView: sceneView, billboard: billboard)
+            }
+            break
+        default:
+            fatalError("unrecognized cell")
+        }
+        
+        return cell
+    }
+}
