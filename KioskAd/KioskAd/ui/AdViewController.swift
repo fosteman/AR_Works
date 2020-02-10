@@ -37,7 +37,8 @@ class AdViewController: UIViewController {
         sceneView.session.pause()
       }
     
-    //MARK: - Creating Nodes
+    //MARK: - Auxillary
+    
     func createBillboard(
         with billboardData: BillboardData,
         topLeft: matrix_float4x4,
@@ -120,6 +121,37 @@ class AdViewController: UIViewController {
         
         return node
     }
+    
+    func createBillboardController() {
+        DispatchQueue.main.async {
+            // create an instance of the initial navigation view controller from Billboard.storyboard
+            let navController = UIStoryboard(name: "Billboard", bundle: nil)
+            .instantiateInitialViewController() as! UINavigationController
+            //
+            let billboardViewController = navController.visibleViewController as! BillboardViewController
+
+            billboardViewController.sceneView = self.sceneView
+            billboardViewController.billboard = self.billboard
+            
+            //preparations
+            billboardViewController.willMove(toParent: self)
+            self.addChild(billboardViewController)
+            self.view.addSubview(billboardViewController.view)
+            
+            self.show(billboardViewController)
+        }
+    }
+    
+    func show(_ viewController: BillboardViewController) {
+        let material = SCNMaterial()
+        material.isDoubleSided = true
+        material.cullMode = .front
+        
+        material.diffuse.contents = viewController.view
+        
+        self.billboard?.viewController = viewController
+        self.billboard?.billboardNode?.geometry?.materials = [material]
+    }
 }
 
 // MARK: - ARSCNViewDelegate
@@ -132,6 +164,7 @@ extension AdViewController: ARSCNViewDelegate {
             switch anchor {
                 case billboard.billboardAnchor:
                     node = addBillboardNode()
+                    self.createBillboardController()
                 case billboard.videoAnchor:
                     node = addVideoPlayerNode()
                 default:
