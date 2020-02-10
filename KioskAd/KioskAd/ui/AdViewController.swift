@@ -4,42 +4,38 @@ import ARKit
 import Vision
 
 class AdViewController: UIViewController {
-  @IBOutlet var sceneView: ARSCNView!
-  weak var targetView: TargetView!
+    @IBOutlet var sceneView: ARSCNView!
+    weak var targetView: TargetView!
 
-  private var billboard: BillboardContainer?
+    private var billboard: BillboardContainer?
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    sceneView.delegate = self
-    sceneView.session.delegate = self
-    sceneView.showsStatistics = true
-    
-    let scene = SCNScene()
-    sceneView.scene = scene
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sceneView.delegate = self
+        sceneView.session.delegate = self
+        sceneView.showsStatistics = true
 
-    // Setup the target view
-    let targetView = TargetView(frame: view.bounds)
-    view.addSubview(targetView)
-    self.targetView = targetView
-    targetView.show()
-  }
+        let scene = SCNScene()
+        sceneView.scene = scene
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    let configuration = ARWorldTrackingConfiguration()
-    configuration.worldAlignment = .camera
-    // Run the view's session
-    sceneView.session.run(configuration)
-  }
+        // Setup the target view
+        let targetView = TargetView(frame: view.bounds)
+        view.addSubview(targetView)
+        self.targetView = targetView
+        targetView.show()
+    }
 
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
+      override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.worldAlignment = .camera
+        sceneView.session.run(configuration)
+      }
 
-    // Pause the view's session
-    sceneView.session.pause()
-  }
-    
+      override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        sceneView.session.pause()
+      }
     
     //MARK: - Creating Nodes
     func createBillboard(
@@ -53,58 +49,39 @@ class AdViewController: UIViewController {
         //Rotate center counterclockwise
         let rotation = SCNMatrix4MakeRotation(Float.pi / 2, 0, 0, 1)
         let rotatedCenter = plane.center * simd_float4x4(rotation)
-        //place anchor in the middle of the rectangle-orientation
+        //anchor in the middle of the rectangle-orientation
         let anchor = ARAnchor(transform: rotatedCenter)
-        
-        billboard = BillboardContainer(billboardData: billboardData,
+        //create sized billboard container
+        self.billboard = BillboardContainer(billboardData: billboardData,
                                        billboardAnchor: anchor,
                                        plane: plane)
-        
         sceneView.session.add(anchor: anchor)
         print("Billboard Created")
     }
     
     func addBillboardNode() -> SCNNode? {
-        guard let billboard = billboard else {return nil}
-        
-        let rect = SCNPlane(width: billboard.plane.width, height: billboard.plane.height)
+        guard let b = self.billboard else {return nil}
+        let rect = SCNPlane(width: b.plane.width, height: b.plane.height)
         let node = SCNNode(geometry: rect)
-        ///Node rotation
-        //node.eulerAngles = SCNVector3(
         self.billboard?.billboardNode = node
         
         return node
     }
     
     func removeBillboard() {
-        if let anchor = billboard?.billboardAnchor {
+        if let anchor = self.billboard?.billboardAnchor {
             sceneView.session.remove(anchor: anchor)
-            billboard?.billboardNode?.removeFromParentNode()
-            billboard = nil
+            self.billboard?.billboardNode?.removeFromParentNode()
+            self.billboard = nil
         }
     }
+    
     func removeVideo() {
-    if let videoAnchor = billboard?.videoAnchor {
-        sceneView.session.remove(anchor: videoAnchor)
-    
-        billboard?.videoNode?.removeFromParentNode()
-        billboard?.videoAnchor = nil
-        billboard?.videoNode = nil
-        }
-    }
-    
-    func setBillboardImages(_ images: [UIImage]) {
-        let material = SCNMaterial()
-        material.isDoubleSided = true
-        
-        DispatchQueue.main.async {
-            let billboardViewController = BillboardViewController(nibName: "BillboardViewController", bundle: nil)
-            billboardViewController.delegate = self
-            billboardViewController.images = images
-            //assign the view that the controller manages
-            material.diffuse.contents = billboardViewController.view
-            self.billboard?.viewController = billboardViewController
-            self.billboard?.billboardNode?.geometry?.materials = [material]
+        if let videoAnchor = self.billboard?.videoAnchor {
+            sceneView.session.remove(anchor: videoAnchor)
+            self.billboard?.videoNode?.removeFromParentNode()
+            self.billboard?.videoAnchor = nil
+            self.billboard?.videoNode = nil
         }
     }
     
@@ -115,25 +92,23 @@ class AdViewController: UIViewController {
         let anchor = ARAnchor(transform: rotatedCenter)
         sceneView.session.add(anchor: anchor)
         self.billboard?.videoAnchor = anchor
-        
     }
     
     func addVideoPlayerNode() -> SCNNode? {
         guard let billboard = billboard else {return nil}
         
-        let billboardSize = CGSize(width: billboard.plane.width, height: billboard.plane.height)
-        let frameSize = CGSize(width: 1024, height: 512)
+        let frameSize = CGSize(width: 1280, height: 720)
         let videoUrl = URL(string: billboard.billboardData.videoUrl)!
-        
         let player = AVPlayer(url: videoUrl)
         let videoPlayerNode = SKVideoNode(avPlayer: player)
+        let SKscene = SKScene(size: frameSize)
+        
         videoPlayerNode.size = frameSize
         videoPlayerNode.position = CGPoint(x: frameSize.width / 2, y: frameSize.height / 2)
         videoPlayerNode.yScale = -1.0
-        
-        let SKscene = SKScene(size: frameSize)
         SKscene.addChild(videoPlayerNode)
         
+        let billboardSize = CGSize(width: billboard.plane.width, height: billboard.plane.height)
         let plane = SCNPlane(width: billboardSize.width, height: billboardSize.height)
         plane.firstMaterial!.isDoubleSided = true
         plane.firstMaterial!.diffuse.contents = SKscene
@@ -152,21 +127,20 @@ extension AdViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard let billboard = billboard else {return nil}
         var node: SCNNode? = nil
+        
         DispatchQueue.main.sync {
-        switch anchor {
-            case billboard.billboardAnchor:
-            node = addBillboardNode()
-        case (let videoAnchor)
-            where videoAnchor == billboard.videoAnchor:
-            node = addVideoPlayerNode()
-            default:
-            break
-        }
+            switch anchor {
+                case billboard.billboardAnchor:
+                    node = addBillboardNode()
+                case billboard.videoAnchor:
+                    node = addVideoPlayerNode()
+                default:
+                    break
             }
-        let images = billboard.billboardData.images.map {
-            UIImage(named: $0)!
         }
-        setBillboardImages(images)
+//        let images = billboard.billboardData.images.map {
+//            UIImage(named: $0)!
+//        }
         
         return node
     }
@@ -186,11 +160,11 @@ extension AdViewController: ARSessionDelegate {
 
 extension AdViewController {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //Remove video node
+    //Remove video node if exists
     if billboard?.hasVideoNode == true {
         billboard?.billboardNode?.isHidden = false
         removeVideo()
-    return
+        return
     }
     
     ///Ar Session carries an `ARFrame`
@@ -260,10 +234,4 @@ extension AdViewController {
         }
     }
   }
-}
-
-extension AdViewController: BillboardViewDelegate {
-    func billboardViewDidSelectPlayVideo(_ view: BillboardView) {
-        createVideo()
-    }
 }

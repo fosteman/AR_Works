@@ -8,7 +8,6 @@ struct BillboardContainer {
     var billboardNode: SCNNode?
     var billboardData: BillboardData
     var plane: RectangularPlane
-    var viewController: BillboardViewController?
     var videoAnchor: ARAnchor?
     var videoNode: SCNNode?
 
@@ -18,10 +17,11 @@ struct BillboardContainer {
     init(billboardData: BillboardData, billboardAnchor: ARAnchor, plane: RectangularPlane) {
         self.billboardAnchor = billboardAnchor
         self.plane = plane
+        self.billboardData = billboardData
+        
         self.billboardNode = nil
         self.videoNode = nil
         self.videoAnchor = nil
-        self.billboardData = billboardData
   }
 }
 

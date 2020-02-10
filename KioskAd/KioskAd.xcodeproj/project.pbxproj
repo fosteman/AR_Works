@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B8029A9623F0B5F700D7AF74 /* BillboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8029A9523F0B5F700D7AF74 /* BillboardData.swift */; };
+		B8029A9A23F1ADA700D7AF74 /* Billboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8029A9923F1ADA700D7AF74 /* Billboard.storyboard */; };
+		B8029A9E23F1ADE200D7AF74 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8029A9C23F1ADE200D7AF74 /* VideoCell.swift */; };
+		B8029A9F23F1ADE200D7AF74 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8029A9D23F1ADE200D7AF74 /* ImageCell.swift */; };
 		B86EE80A23F07BC000DC72AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE80923F07BC000DC72AE /* AppDelegate.swift */; };
 		B86EE81123F07BC000DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE80F23F07BC000DC72AE /* Main.storyboard */; };
 		B86EE81323F07BC300DC72AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86EE81223F07BC300DC72AE /* Assets.xcassets */; };
@@ -16,14 +19,14 @@
 		B86EE82323F07F1100DC72AE /* RectangularPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE82123F07F1100DC72AE /* RectangularPlane.swift */; };
 		B86EE82723F080E100DC72AE /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE82523F080E100DC72AE /* AdViewController.swift */; };
 		B86EE82823F080E100DC72AE /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE82623F080E100DC72AE /* TargetView.swift */; };
-		B86EE82C23F0A58E00DC72AE /* BillboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE82923F0A58E00DC72AE /* BillboardView.swift */; };
 		B86EE82E23F0A58E00DC72AE /* BillboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE82B23F0A58E00DC72AE /* BillboardViewController.swift */; };
-		B86EE83123F0AC9F00DC72AE /* BillboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86EE83023F0AC9F00DC72AE /* BillboardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B8029A8D23F0B37D00D7AF74 /* How to Visualize and Manifest Bigger Goals.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How to Visualize and Manifest Bigger Goals.mp4"; sourceTree = "<group>"; };
 		B8029A9523F0B5F700D7AF74 /* BillboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillboardData.swift; sourceTree = "<group>"; };
+		B8029A9923F1ADA700D7AF74 /* Billboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Billboard.storyboard; sourceTree = "<group>"; };
+		B8029A9C23F1ADE200D7AF74 /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		B8029A9D23F1ADE200D7AF74 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B86EE80623F07BC000DC72AE /* KioskAd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KioskAd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EE80923F07BC000DC72AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86EE81023F07BC000DC72AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -35,9 +38,7 @@
 		B86EE82123F07F1100DC72AE /* RectangularPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangularPlane.swift; sourceTree = "<group>"; };
 		B86EE82523F080E100DC72AE /* AdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		B86EE82623F080E100DC72AE /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
-		B86EE82923F0A58E00DC72AE /* BillboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillboardView.swift; sourceTree = "<group>"; };
 		B86EE82B23F0A58E00DC72AE /* BillboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillboardViewController.swift; sourceTree = "<group>"; };
-		B86EE83023F0AC9F00DC72AE /* BillboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillboardViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B8029A9B23F1ADE200D7AF74 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				B8029A9C23F1ADE200D7AF74 /* VideoCell.swift */,
+				B8029A9D23F1ADE200D7AF74 /* ImageCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		B86EE7FD23F07BC000DC72AE = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +101,6 @@
 		B86EE81F23F07EE700DC72AE /* data */ = {
 			isa = PBXGroup;
 			children = (
-				B8029A8D23F0B37D00D7AF74 /* How to Visualize and Manifest Bigger Goals.mp4 */,
 				B86EE82023F07F1100DC72AE /* BillboardContainer.swift */,
 				B86EE82123F07F1100DC72AE /* RectangularPlane.swift */,
 				B8029A9523F0B5F700D7AF74 /* BillboardData.swift */,
@@ -102,8 +111,8 @@
 		B86EE82423F080CC00DC72AE /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				B86EE82923F0A58E00DC72AE /* BillboardView.swift */,
-				B86EE83023F0AC9F00DC72AE /* BillboardViewController.xib */,
+				B8029A9B23F1ADE200D7AF74 /* cells */,
+				B8029A9923F1ADA700D7AF74 /* Billboard.storyboard */,
 				B86EE82B23F0A58E00DC72AE /* BillboardViewController.swift */,
 				B86EE80F23F07BC000DC72AE /* Main.storyboard */,
 				B86EE81423F07BC300DC72AE /* LaunchScreen.storyboard */,
@@ -173,7 +182,7 @@
 			files = (
 				B86EE81623F07BC300DC72AE /* LaunchScreen.storyboard in Resources */,
 				B86EE81323F07BC300DC72AE /* Assets.xcassets in Resources */,
-				B86EE83123F0AC9F00DC72AE /* BillboardViewController.xib in Resources */,
+				B8029A9A23F1ADA700D7AF74 /* Billboard.storyboard in Resources */,
 				B86EE81123F07BC000DC72AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,8 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EE82723F080E100DC72AE /* AdViewController.swift in Sources */,
+				B8029A9E23F1ADE200D7AF74 /* VideoCell.swift in Sources */,
+				B8029A9F23F1ADE200D7AF74 /* ImageCell.swift in Sources */,
 				B86EE82323F07F1100DC72AE /* RectangularPlane.swift in Sources */,
-				B86EE82C23F0A58E00DC72AE /* BillboardView.swift in Sources */,
 				B8029A9623F0B5F700D7AF74 /* BillboardData.swift in Sources */,
 				B86EE80A23F07BC000DC72AE /* AppDelegate.swift in Sources */,
 				B86EE82223F07F1100DC72AE /* BillboardContainer.swift in Sources */,
