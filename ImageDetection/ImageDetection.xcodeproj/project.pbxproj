@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8354F8223F3533600336385 /* RectangularPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8123F3533600336385 /* RectangularPlane.swift */; };
 		B86EE7AB23EAF48D00DC72AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7AA23EAF48D00DC72AE /* AppDelegate.swift */; };
 		B86EE7AF23EAF48D00DC72AE /* VisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7AE23EAF48D00DC72AE /* VisionController.swift */; };
 		B86EE7B223EAF48D00DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7B023EAF48D00DC72AE /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		B8029AC323F3452D00D7AF74 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B8354F8123F3533600336385 /* RectangularPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularPlane.swift; sourceTree = "<group>"; };
 		B86EE7A723EAF48D00DC72AE /* ImageDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EE7AA23EAF48D00DC72AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86EE7AE23EAF48D00DC72AE /* VisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				B86EE7BE23EAF61200DC72AE /* ImageModel.swift */,
+				B8354F8123F3533600336385 /* RectangularPlane.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EE7AF23EAF48D00DC72AE /* VisionController.swift in Sources */,
+				B8354F8223F3533600336385 /* RectangularPlane.swift in Sources */,
 				B86EE7BF23EAF61200DC72AE /* ImageModel.swift in Sources */,
 				B86EE7AB23EAF48D00DC72AE /* AppDelegate.swift in Sources */,
 			);
