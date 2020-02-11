@@ -3,26 +3,25 @@
 import ARKit
 import SceneKit
 
-struct BillboardContainer {
-    var billboardAnchor: ARAnchor
-    var billboardNode: SCNNode?
-    var billboardData: BillboardData
-    var plane: RectangularPlane
-    var videoAnchor: ARAnchor?
-    var videoNode: SCNNode?
-    var viewController: BillboardViewController?
-    
-    var hasBillboardNode: Bool { return billboardNode != nil }
-    var hasVideoNode: Bool {return videoNode != nil}
+class BillboardContainer {
+  var billboardData: BillboardData
+  var billboardAnchor: ARAnchor
+  var billboardNode: SCNNode?
+  var videoAnchor: ARAnchor?
+  var videoNode: SCNNode?
+  var plane: RectangularPlane
+  var viewController: BillboardViewController?
 
-    init(billboardData: BillboardData, billboardAnchor: ARAnchor, plane: RectangularPlane) {
-        self.billboardAnchor = billboardAnchor
-        self.plane = plane
-        self.billboardData = billboardData
-        
-        self.billboardNode = nil
-        self.videoNode = nil
-        self.videoAnchor = nil
+  var hasBillboardNode: Bool { return billboardNode != nil }
+  var hasVideoNode: Bool { return videoNode != nil }
+  
+  init(billboardData: BillboardData, billboardAnchor: ARAnchor, plane: RectangularPlane) {
+    self.billboardData = billboardData
+    self.billboardAnchor = billboardAnchor
+    self.plane = plane
+    self.billboardNode = nil
+    self.videoAnchor = nil
+    self.videoNode = nil
   }
 }
 
