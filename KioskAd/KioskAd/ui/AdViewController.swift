@@ -11,14 +11,14 @@ class AdViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView.delegate = self
-        sceneView.session.delegate = self
+        sceneView.delegate = self // mediate AR Scene's view and SceneKit content
+        sceneView.session.delegate = self //receive captured video images and tracking information, and respond to changes in session status
         sceneView.showsStatistics = true
 
         let scene = SCNScene()
         sceneView.scene = scene
 
-        // Setup the target view
+        // Draw TargetAim drawing on view
         let targetView = TargetView(frame: view.bounds)
         view.addSubview(targetView)
         self.targetView = targetView
@@ -179,6 +179,7 @@ extension AdViewController: ARSCNViewDelegate {
     }
 }
 
+//MARK: - ARKit Session Delegate
 extension AdViewController: ARSessionDelegate {
   func session(_ session: ARSession, didFailWithError error: Error) {
   }
@@ -191,6 +192,7 @@ extension AdViewController: ARSessionDelegate {
   }
 }
 
+// MARK: - User Interface
 extension AdViewController {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     //Remove video node if exists

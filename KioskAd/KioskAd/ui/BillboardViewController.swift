@@ -8,6 +8,7 @@ private enum Section: Int {
   case webBrowser = 2
 }
 
+//Cell identifier
 private enum Cell: String {
   case cellWebBrowser
   case cellVideo
@@ -45,10 +46,11 @@ extension BillboardViewController {
         case .video:
             return 1
         default:
-            return 0
+            fatalError("unknown section")
         }
     }
     
+    //Each cell type is handeled as separate section (useful in case of sequences of images)
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let currentSection = Section(rawValue: indexPath.section) else {fatalError("Unexpected collection view section")}
         
@@ -63,11 +65,12 @@ extension BillboardViewController {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.rawValue, for: indexPath)
-        
+        // Funky switch between the types
         switch cell {
         case let imageCell as ImageCell:
             let image = UIImage(named: billboard!.billboardData.images[indexPath.item])!
             imageCell.show(image: image)
+            
         case let videoCell as VideoCell:
             let videoUrl = billboard!.billboardData.videoUrl
             if let sceneView = sceneView,
