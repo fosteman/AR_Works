@@ -29,6 +29,8 @@ class AdViewController: UIViewController {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         configuration.worldAlignment = .camera
+        configuration.detectionImages = ARReferenceImage.referenceImages(inGroupNamed: "AD-Triggers", bundle: nil)
+        
         sceneView.session.run(configuration)
       }
 
@@ -60,6 +62,29 @@ class AdViewController: UIViewController {
         
         sceneView.session.add(anchor: anchor)
         print("Billboard Created")
+    }
+    
+    func createBillboard(center: matrix_float4x4,
+                         size: CGSize) {
+        let billboardData = BillboardData(
+            link: "fosteman.info",
+            images: [""],
+            videoUrl: "")
+        let plane = RectangularPlane(center: center, size: size)
+        let rotation = SCNMatrix4MakeRotation(Float.pi / 2, 0, 0, 1)
+        let rotatedCenter = plane.center * simd_float4x4(rotation)
+        //anchor in the middle of the rectangle-orientation
+        let anchor = ARAnchor(transform: rotatedCenter)
+        //create sized billboard container
+        billboard = BillboardContainer(
+            billboardData: billboardData,
+        billboardAnchor: anchor,
+        plane: plane)
+        billboard?.videoPlayerDelegate = self
+        sceneView.session.add(anchor: anchor)
+        
+        print("VMan Billboard created!")
+        
     }
     
     func addBillboardNode() -> SCNNode? {
@@ -185,6 +210,15 @@ extension AdViewController: ARSCNViewDelegate {
 
 //MARK: - ARKit Session Delegate
 extension AdViewController: ARSessionDelegate {
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        if let imageAnchor = anchors.compactMap({
+            $0 as? ARImageAnchor
+        }).first {
+            self.createBillboard(center: imageAnchor.transform,
+                                 size: imageAnchor.referenceImage.physicalSize)
+        }
+    }
+    
   func session(_ session: ARSession, didFailWithError error: Error) {
   }
 
