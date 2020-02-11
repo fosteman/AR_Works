@@ -38,15 +38,15 @@ extension BillboardViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let currentSection = Section(rawValue: section) else {return 0}
-        
-        switch currentSection {
-        case .images:
-            return billboard?.billboardData.images.count ?? 0
-        case .video:
-            return 1
-        default:
-            fatalError("unknown section")
+      guard let currentSection = Section(rawValue: section) else { return 0 }
+
+      switch currentSection {
+      case .images:
+        return billboard?.billboardData.images.count ?? 0
+      case .video:
+        return 1
+      case .webBrowser:
+        return 1
         }
     }
     
@@ -60,8 +60,8 @@ extension BillboardViewController {
             cellType = .cellImage
         case .video:
             cellType = .cellVideo
-        default:
-            fatalError("wrong type")
+        case .webBrowser:
+            return 1
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.rawValue, for: indexPath)
