@@ -61,7 +61,7 @@ extension BillboardViewController {
         case .video:
             cellType = .cellVideo
         case .webBrowser:
-            return 1
+            fatalError("webbrowser cell")
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.rawValue, for: indexPath)
