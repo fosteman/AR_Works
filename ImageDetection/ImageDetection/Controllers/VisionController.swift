@@ -91,7 +91,7 @@ extension VisionController {
     func createAugmentation(topLeft: matrix_float4x4,
     topRight: matrix_float4x4,
     bottomLeft: matrix_float4x4,
-    bottomright: matrix_float4x4) {
+    bottomRight: matrix_float4x4) {
         //Create contextual augmentation to the tracked object
         
     }
@@ -120,7 +120,7 @@ extension VisionController {
                         self.createAugmentation(topLeft: coordinates[0],
                                                 topRight: coordinates[1],
                                                 bottomLeft: coordinates[2],
-                                                bottomright: coordinates[3])
+                                                bottomRight: coordinates[3])
                         #if DEBUG
                         // Artistic drawing
                         #endif
