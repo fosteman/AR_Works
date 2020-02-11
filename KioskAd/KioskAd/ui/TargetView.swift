@@ -22,7 +22,7 @@ class TargetView: UIView {
 
     frame = CGRect(origin: CGPoint(x: finalFrame.width / 2, y: finalFrame.height / 2), size: CGSize.zero)
     isHidden = false
-    UIView.animate(withDuration: 1.4, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+    UIView.animate(withDuration: 3.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
       self.frame = finalFrame
     })
   }
@@ -37,6 +37,7 @@ class TargetView: UIView {
   }
 
   override func draw(_ rect: CGRect) {
+    //Core Graphics
     let targetLength: CGFloat = 30
 
     let size = min(self.bounds.width, self.bounds.height) - 100
