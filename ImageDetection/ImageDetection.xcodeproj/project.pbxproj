@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B8354F8223F3533600336385 /* RectangularPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8123F3533600336385 /* RectangularPlane.swift */; };
+		B8354F8423F3583C00336385 /* AugmentationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8323F3583C00336385 /* AugmentationContainer.swift */; };
+		B8354F8623F35A3800336385 /* AugmentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8523F35A3800336385 /* AugmentationViewController.swift */; };
+		B8354F8823F35A5500336385 /* Augmentation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8354F8723F35A5500336385 /* Augmentation.storyboard */; };
+		B8354F8A23F3748600336385 /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8923F3748600336385 /* LabelNode.swift */; };
+		B8354F8C23F374CB00336385 /* LabelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B8354F8B23F374CB00336385 /* LabelScene.sks */; };
+		B8354F8F23F377D400336385 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8354F8E23F377D400336385 /* Functions.swift */; };
 		B86EE7AB23EAF48D00DC72AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7AA23EAF48D00DC72AE /* AppDelegate.swift */; };
 		B86EE7AF23EAF48D00DC72AE /* VisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EE7AE23EAF48D00DC72AE /* VisionController.swift */; };
 		B86EE7B223EAF48D00DC72AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86EE7B023EAF48D00DC72AE /* Main.storyboard */; };
@@ -19,6 +25,12 @@
 /* Begin PBXFileReference section */
 		B8029AC323F3452D00D7AF74 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B8354F8123F3533600336385 /* RectangularPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularPlane.swift; sourceTree = "<group>"; };
+		B8354F8323F3583C00336385 /* AugmentationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentationContainer.swift; sourceTree = "<group>"; };
+		B8354F8523F35A3800336385 /* AugmentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentationViewController.swift; sourceTree = "<group>"; };
+		B8354F8723F35A5500336385 /* Augmentation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Augmentation.storyboard; sourceTree = "<group>"; };
+		B8354F8923F3748600336385 /* LabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNode.swift; sourceTree = "<group>"; };
+		B8354F8B23F374CB00336385 /* LabelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LabelScene.sks; sourceTree = "<group>"; };
+		B8354F8E23F377D400336385 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		B86EE7A723EAF48D00DC72AE /* ImageDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EE7AA23EAF48D00DC72AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86EE7AE23EAF48D00DC72AE /* VisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionController.swift; sourceTree = "<group>"; };
@@ -40,13 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8029AC023F3446A00D7AF74 /* Views */ = {
+		B8029AC023F3446A00D7AF74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B8354F8B23F374CB00336385 /* LabelScene.sks */,
 				B86EE7B523EAF48E00DC72AE /* LaunchScreen.storyboard */,
 				B86EE7B023EAF48D00DC72AE /* Main.storyboard */,
+				B8354F8723F35A5500336385 /* Augmentation.storyboard */,
 			);
-			path = Views;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B8029AC123F3447D00D7AF74 /* Controllers */ = {
@@ -54,6 +68,8 @@
 			children = (
 				B86EE7AA23EAF48D00DC72AE /* AppDelegate.swift */,
 				B86EE7AE23EAF48D00DC72AE /* VisionController.swift */,
+				B8354F8523F35A3800336385 /* AugmentationViewController.swift */,
+				B8354F8923F3748600336385 /* LabelNode.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -63,8 +79,17 @@
 			children = (
 				B86EE7BE23EAF61200DC72AE /* ImageModel.swift */,
 				B8354F8123F3533600336385 /* RectangularPlane.swift */,
+				B8354F8323F3583C00336385 /* AugmentationContainer.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B8354F8D23F377C700336385 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B8354F8E23F377D400336385 /* Functions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B86EE79E23EAF48D00DC72AE = {
@@ -86,9 +111,10 @@
 		B86EE7A923EAF48D00DC72AE /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				B8354F8D23F377C700336385 /* Helpers */,
 				B8029AC223F3448200D7AF74 /* Models */,
 				B8029AC123F3447D00D7AF74 /* Controllers */,
-				B8029AC023F3446A00D7AF74 /* Views */,
+				B8029AC023F3446A00D7AF74 /* Resources */,
 				B86EE7B323EAF48E00DC72AE /* Assets.xcassets */,
 				B86EE7B823EAF48E00DC72AE /* Info.plist */,
 				B8029AC323F3452D00D7AF74 /* README.md */,
@@ -154,8 +180,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8354F8C23F374CB00336385 /* LabelScene.sks in Resources */,
 				B86EE7B723EAF48E00DC72AE /* LaunchScreen.storyboard in Resources */,
 				B86EE7B423EAF48E00DC72AE /* Assets.xcassets in Resources */,
+				B8354F8823F35A5500336385 /* Augmentation.storyboard in Resources */,
 				B86EE7B223EAF48D00DC72AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +198,10 @@
 				B86EE7AF23EAF48D00DC72AE /* VisionController.swift in Sources */,
 				B8354F8223F3533600336385 /* RectangularPlane.swift in Sources */,
 				B86EE7BF23EAF61200DC72AE /* ImageModel.swift in Sources */,
+				B8354F8F23F377D400336385 /* Functions.swift in Sources */,
+				B8354F8423F3583C00336385 /* AugmentationContainer.swift in Sources */,
+				B8354F8623F35A3800336385 /* AugmentationViewController.swift in Sources */,
+				B8354F8A23F3748600336385 /* LabelNode.swift in Sources */,
 				B86EE7AB23EAF48D00DC72AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
