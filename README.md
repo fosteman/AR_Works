@@ -5,7 +5,7 @@
 is an AR game similar to dice in [real life](https://media.giphy.com/media/xR2SI8vqfQMLe/giphy.gif)
 
 #### Augmented Heart Billboard
-![demo](augmented-heart/js/res/heart.png)
+![Heart](demo.gif)
 
 #### KioskAd 
 AR QR Code Reader, Billboard
